@@ -8,6 +8,7 @@ import calendar
 import vk_api
 from vk_api import VkUpload
 from vk_api.longpoll import VkLongPoll, VkEventType
+from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 from vk_api.utils import get_random_id
 
 def main():
@@ -90,10 +91,16 @@ def main():
                 )
                 continue
             else:
+                keyboard = VkKeyboard()
+
+                keyboard.add_button('Сегодня', color=VkKeyboardColor.POSITIVE)
+                keyboard.add_line()
+                keyboard.add_button('Завтра', color=VkKeyboardColor.POSITIVE)
                 vk.messages.send(
                     user_id=event.user_id,
                     random_id=get_random_id(),
-                    message='Что распознаёт бот?\n\n"сегодня" / "завтра" / "послезавтра"\n"[день недели]" (пример: "вторник" или "вт")\n"дз"'
+                    keyboard=keyboard.get_keyboard(),
+                    message='Какие запросы распознаёт бот?\n\n"сегодня" / "завтра" / "послезавтра"\n"[день недели]" (пример: "вторник" или "вт")\n"дз"\n\nТакже можно воспользоваться клавиатурой (функционал клавиатуры временно(?) ограничен)'
                 )
                 continue
 
