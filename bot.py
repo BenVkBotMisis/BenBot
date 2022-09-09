@@ -146,6 +146,8 @@ def main():
 
             # parsing this fucken json =/
             for bn in [1, 2, 3, 4, 5]:
+                if 'day_{}'.format(bn) in schedule:
+                    continue;
                 bell = schedule['bell_{}'.format(bn)]
                 day = bell['day_{}'.format(weekday)]
                 for lesson in day['lessons']:
