@@ -128,7 +128,7 @@ def main():
                        'end_date': None
                        }
 
-            client = requests.post('https://login.misis.ru/method/schedule.get', body, headers)
+            client = requests.post('https://lk.misis.ru/method/schedule.get', body, headers)
             print(client.text)
             response = json.loads(client.text)
 
